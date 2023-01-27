@@ -6,9 +6,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/src/main/app/server"
+	"ikp_items-api/src/main/app/server"
 
-	"github.com/src/main/app/handlers"
+	"ikp_items-api/src/main/app/handlers"
 
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"

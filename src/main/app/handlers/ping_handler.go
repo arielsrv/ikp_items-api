@@ -1,8 +1,9 @@
 package handlers
 
 import (
+	"ikp_items-api/src/main/app/services"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/src/main/app/services"
 )
 
 type IPingHandler interface {

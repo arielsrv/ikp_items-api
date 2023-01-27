@@ -9,9 +9,9 @@ import (
 
 	"github.com/go-chassis/go-archaius"
 
-	"github.com/src/main/app/helpers/files"
+	"ikp_items-api/src/main/app/helpers/files"
 
-	"github.com/src/main/app/config/env"
+	"ikp_items-api/src/main/app/config/env"
 )
 
 const (

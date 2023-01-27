@@ -3,7 +3,7 @@ package env_test
 import (
 	"testing"
 
-	"github.com/src/main/app/config/env"
+	"ikp_items-api/src/main/app/config/env"
 
 	"github.com/stretchr/testify/assert"
 )

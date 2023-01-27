@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/src/main/app"
-	_ "github.com/src/resources/docs"
+	"ikp_items-api/src/main/app"
+	_ "ikp_items-api/src/resources/docs"
 )
 
 // @title Golang Template API

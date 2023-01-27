@@ -2,15 +2,18 @@ package app
 
 import (
 	"fmt"
+	"ikp_items-api/src/main/app/infrastructure/database"
 	"log"
 	"net/http"
 
-	"github.com/src/main/app/config"
-	"github.com/src/main/app/config/env"
-	"github.com/src/main/app/handlers"
-	"github.com/src/main/app/server"
-	"github.com/src/main/app/services"
+	"ikp_items-api/src/main/app/config"
+	"ikp_items-api/src/main/app/config/env"
+	"ikp_items-api/src/main/app/handlers"
+	"ikp_items-api/src/main/app/server"
+	"ikp_items-api/src/main/app/services"
 )
+
+var dbClient = ProvideDBClient()
 
 func Run() error {
 	app := server.New(server.Config{
@@ -23,9 +26,14 @@ func Run() error {
 	pingService := services.NewPingService()
 	pingHandler := handlers.NewPingHandler(pingService)
 
+	itemService := services.NewItemService(dbClient)
+	itemHandler := handlers.NewItemHandler(itemService)
+
 	server.RegisterHandler(pingHandler)
+	server.RegisterHandler(itemHandler)
 
 	server.Register(http.MethodGet, "/ping", server.Resolve[handlers.PingHandler]().Ping)
+	server.Register(http.MethodPost, "/items", server.Resolve[handlers.ItemHandler]().Create)
 
 	host := config.String("HOST")
 	if env.IsEmpty(host) && !env.IsDev() {
@@ -45,4 +53,11 @@ func Run() error {
 	log.Printf("Open http://%s:%s/ping in the browser", host, port)
 
 	return app.Start(address)
+}
+
+func ProvideDBClient() database.IDbClient {
+	connectionString := config.String("PROD_CONNECTION_STRING")
+	mySQLClient := database.NewMySQLClient(connectionString)
+
+	return database.NewDBClient(mySQLClient)
 }

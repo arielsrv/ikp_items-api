@@ -6,12 +6,13 @@ import (
 	"net/http"
 	"reflect"
 
+	properties "ikp_items-api/src/main/app/config"
+
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	properties "github.com/src/main/app/config"
 
-	"github.com/src/main/app/config/env"
+	"ikp_items-api/src/main/app/config/env"
 
-	"github.com/src/main/app/server/errors"
+	"ikp_items-api/src/main/app/server/errors"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -131,4 +132,9 @@ func getType(value any) string {
 	}
 
 	return name.String()
+}
+
+func SendCreated(ctx *fiber.Ctx, data interface{}) error {
+	ctx.Status(http.StatusCreated)
+	return ctx.JSON(data)
 }

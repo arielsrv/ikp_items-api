@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/src/main/app/server"
+	"ikp_items-api/src/main/app/server"
 
-	"github.com/src/main/app/handlers"
+	"ikp_items-api/src/main/app/handlers"
 )
 
 func BenchmarkPingHandler_Ping(b *testing.B) {
