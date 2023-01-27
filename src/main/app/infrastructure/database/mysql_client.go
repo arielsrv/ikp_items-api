@@ -4,8 +4,9 @@ import (
 	"context"
 	"log"
 
-	_ "github.com/go-sql-driver/mysql"
 	"ikp_items-api/src/main/app/ent"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type MySQLClient struct {
